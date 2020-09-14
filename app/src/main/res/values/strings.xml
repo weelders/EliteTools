@@ -9,4 +9,15 @@
     <string name="account">Mon compte</string>
     <string name="option">Options</string>
     <string name="about">À propos</string>
+
+
+    <string name="system_content">Permet de rechercher un système par son nom.</string>
+    <string name="system_btnSearch">Rechercher</string>
+    <string name="system_btnLocateMe">Me Localiser</string>
+    <string name="system_EtName">Nom du système</string>
+
+    <string name="rvSystem_allegiance">Allégeance:</string>
+    <string name="rvSystem_economy">Économie:</string>
+    <string name="rvSystem_security">Sécurité:</string>
+    <string name="rvSystem_power">Chef Puissance:</string>
 </resources>
