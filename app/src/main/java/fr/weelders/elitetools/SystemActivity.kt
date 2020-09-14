@@ -26,6 +26,10 @@ class SystemActivity : AppCompatActivity() {
         val btn_system_locate = findViewById<Button>(R.id.btn_system_locate)
         val rv_system = findViewById<RecyclerView>(R.id.rv_system)
 
+        //Remove message "RecyclerView: No adapter attached; skipping layout" in logs
+        rv_system.layoutManager = LinearLayoutManager(this)
+        rv_system.adapter = RecyclerViewAdapterSystem(ArrayList<Docs>(), this)
+
         //------------------------------------------------------------------------------------
         // OnClickListener
         //------------------------------------------------------------------------------------
@@ -35,24 +39,22 @@ class SystemActivity : AppCompatActivity() {
 
             try {
                 systemName = userInputCheck(systemName, this)
+                thread {
+                    try {
+                        val listSystem = getSystem(systemName)
+                        runOnUiThread {
+                            rv_system.adapter = RecyclerViewAdapterSystem(listSystem, this)
+                        }
+                    } catch (e: Exception) {
+                        e.printStackTrace()
+                        runOnUiThread {
+                            Toast.makeText(this, e.message, Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                }
             } catch (e: UserInputException) {
                 e.printStackTrace()
                 Toast.makeText(this, e.message, Toast.LENGTH_SHORT).show()
-            }
-
-            thread {
-                try {
-                    val listSystem = getSystem(systemName)
-                    runOnUiThread {
-                        rv_system.layoutManager = LinearLayoutManager(this)
-                        rv_system.adapter = RecyclerViewAdapterSystem(listSystem, this)
-                    }
-                } catch (e: Exception) {
-                    e.printStackTrace()
-                    runOnUiThread {
-                        Toast.makeText(this, e.message, Toast.LENGTH_SHORT).show()
-                    }
-                }
             }
         }
     }
