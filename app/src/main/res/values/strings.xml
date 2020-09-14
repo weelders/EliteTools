@@ -20,7 +20,7 @@
     <string name="rvSystem_allegiance">Allégeance:</string>
     <string name="rvSystem_economy">Économie:</string>
     <string name="rvSystem_security">Sécurité:</string>
-    <string name="rvSystem_power">Chef Puissance:</string>
+    <string name="rvSystem_power">Puissance:</string>
 
 
     <!--****************Kotlin Strings****************-->
