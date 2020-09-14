@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">Elite Tools</string>
+
+    <!--****************XML Strings****************-->
     <string name="news">News</string>
     <string name="galnet">Galnet</string>
     <string name="system">Système</string>
@@ -10,7 +12,6 @@
     <string name="option">Options</string>
     <string name="about">À propos</string>
 
-
     <string name="system_content">Permet de rechercher un système par son nom.</string>
     <string name="system_btnSearch">Rechercher</string>
     <string name="system_btnLocateMe">Me Localiser</string>
@@ -20,4 +21,8 @@
     <string name="rvSystem_economy">Économie:</string>
     <string name="rvSystem_security">Sécurité:</string>
     <string name="rvSystem_power">Chef Puissance:</string>
+
+
+    <!--****************Kotlin Strings****************-->
+    <string name="userInputEx_default">Erreur, champ incorrect !</string>
 </resources>
