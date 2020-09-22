@@ -1,6 +1,7 @@
 package fr.weelders.elitetools
 
 import android.os.Bundle
+import android.view.WindowManager
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
@@ -12,6 +13,9 @@ class DistanceActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_distance)
+
+        //The keybord's window cover the layout without adjust him
+        window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_NOTHING)
 
         //------------------------------------------------------------------------------------
         // Import Views
