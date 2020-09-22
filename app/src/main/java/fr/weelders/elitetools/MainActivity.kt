@@ -4,6 +4,8 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
+import java.lang.Exception
+import kotlin.concurrent.thread
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,6 +32,11 @@ class MainActivity : AppCompatActivity() {
 
         btn_system.setOnClickListener {
             val intentSystem = Intent(this, SystemActivity::class.java)
+            startActivity(intentSystem)
+        }
+
+        btn_distance.setOnClickListener {
+            val intentSystem = Intent(this, DistanceActivity::class.java)
             startActivity(intentSystem)
         }
     }
