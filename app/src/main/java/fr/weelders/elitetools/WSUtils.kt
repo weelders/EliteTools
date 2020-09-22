@@ -10,12 +10,16 @@ fun getSystem(nameSystem: String): ArrayList<Docs> {
 
 fun getSystemName(): Array<String>? {
     val json = sendGetOkHttpRequest(URL_SYSTEM_NAMES)
-    val result = Gson().fromJson(json,Array<String>::class.java)
+    val result = Gson().fromJson(json, Array<String>::class.java)
     return result
 }
 
-fun getDistanceByNames(name1:String,name2:String): Double? {
+fun getDistanceByNames(name1: String, name2: String): Any {
     val json = sendGetOkHttpRequest("$URL_DISTANCE?name1=$name1&name2=$name2")
-    val result = Gson().fromJson(json,Double::class.java)
-    return result
+    try {
+        return Gson().fromJson(json, Double::class.java)
+    } catch (e: Exception) {
+        return json
+    }
+
 }

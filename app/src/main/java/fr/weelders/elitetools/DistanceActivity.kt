@@ -39,13 +39,23 @@ class DistanceActivity : AppCompatActivity() {
                 thread {
                     try {
                         val result = getDistanceByNames(systemName1, systemName2)
-                        runOnUiThread { tv_distance_result.text = "$result AL" }
+                        if (result::class == Double::class) {
+                            runOnUiThread { tv_distance_result.text = "$result AL" }
+                        } else {
+                            println(result.toString())
+                            runOnUiThread {
+                                Toast.makeText(
+                                    this,
+                                    result.toString(),
+                                    Toast.LENGTH_LONG
+                                ).show()
+                            }
+                        }
 
                     } catch (e: Exception) {
                         e.printStackTrace()
                         runOnUiThread { Toast.makeText(this, e.message, Toast.LENGTH_SHORT).show() }
                     }
-
                 }
             } catch (e: UserInputException) {
                 e.printStackTrace()
