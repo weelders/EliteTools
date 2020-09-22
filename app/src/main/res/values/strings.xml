@@ -17,6 +17,13 @@
     <string name="system_btnLocateMe">Me Localiser</string>
     <string name="system_EtName">Nom du système</string>
 
+    <string name="distance_content">Permet de rechercher la distance entre 2 systèmes par leurs noms.</string>
+    <string name="distance_btnSearch">Rechercher</string>
+    <string name="distance_btnLocateMe">Me Localiser</string>
+    <string name="distance_EtName1">Nom du système 1</string>
+    <string name="distance_EtName2">Nom du système 2</string>
+    <string name="distance_tvDistance">Distance entre les 2 Systèmes:</string>
+
     <string name="rvSystem_allegiance">Allégeance:</string>
     <string name="rvSystem_economy">Économie:</string>
     <string name="rvSystem_security">Sécurité:</string>

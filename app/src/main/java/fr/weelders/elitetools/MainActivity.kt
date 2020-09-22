@@ -34,6 +34,11 @@ class MainActivity : AppCompatActivity() {
             val intentSystem = Intent(this, SystemActivity::class.java)
             startActivity(intentSystem)
         }
+
+        btn_distance.setOnClickListener {
+            val intentSystem = Intent(this, DistanceActivity::class.java)
+            startActivity(intentSystem)
+        }
     }
 
 
