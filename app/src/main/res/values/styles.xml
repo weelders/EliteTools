@@ -8,6 +8,10 @@
         <item name="android:buttonStyle">@style/AppThemeButton</item>
         <item name="android:windowBackground">@color/background</item>
         <item name="android:colorBackground">@color/background</item>
+        <item name="android:textViewStyle">@style/AppThemeTextView</item>
+        <item name="android:textColorHint">@color/grey_white</item>
+        <item name="android:spinnerDropDownItemStyle">@style/AppSpinnerDropDownItem</item>
+        <item name="android:editTextColor">@color/pure_white</item>
     </style>
 
     <style name="AppThemeButton" parent="Widget.AppCompat.Button">
@@ -15,8 +19,18 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:textColor">@color/colorAccent</item>
         <item name="android:background">@drawable/border</item>
-        <item name="android:padding">5dp</item>
+        <item name="android:padding">10dp</item>
         <item name="android:layout_margin">5dp</item>
+    </style>
+
+    <style name="AppThemeTextView" parent="@style/TextAppearance.AppCompat">
+        <item name="android:textColor">@color/pure_white</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="AppSpinnerDropDownItem" parent="Base.Widget.AppCompat.DropDownItem.Spinner">
+        <item name="android:background">@color/background</item>
+        <item name="android:textColor">@color/pure_white</item>
     </style>
 
 </resources>

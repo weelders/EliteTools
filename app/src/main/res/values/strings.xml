@@ -39,7 +39,7 @@
     <string name="rvShip_stationName">Nom de la station:</string>
     <string name="rvShip_distanceSystem">Distance:</string>
     <string name="rvShip_distanceStar">Distance de l\'étoile:</string>
-    <string name="rvShip_landing">Taille max piste d\'atterissage:</string>
+    <string name="rvShip_landing">Piste d\'atterissage:</string>
 
 
 

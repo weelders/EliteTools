@@ -31,65 +31,72 @@ class MainActivity : AppCompatActivity() {
         // ANIMATION
         //------------------------------------------------------------------------------------
 
-        val bounceAnim = AnimationUtils.loadAnimation(this,R.anim.bounce)
-        val speedBounceAnim = AnimationUtils.loadAnimation(this,R.anim.speed_bounce)
-        val interpolator = MyBounceInterpolator(0.2,20.0)
-        bounceAnim.interpolator = interpolator
+        //val bounceAnim = AnimationUtils.loadAnimation(this,R.anim.bounce)
+        val speedBounceAnim = AnimationUtils.loadAnimation(this, R.anim.speed_bounce)
+        //val interpolator = MyBounceInterpolator(0.2,20.0)
+        //bounceAnim.interpolator = interpolator
 
-        btn_news.startAnimation(bounceAnim)
-        btn_galnet.startAnimation(bounceAnim)
-        btn_system.startAnimation(bounceAnim)
-        btn_ship.startAnimation(bounceAnim)
-        btn_commodity.startAnimation(bounceAnim)
-        btn_distance.startAnimation(bounceAnim)
-        btn_account.startAnimation(bounceAnim)
-        btn_option.startAnimation(bounceAnim)
-        btn_about.startAnimation(bounceAnim)
+        btn_news.startAnimation(AnimationUtils.loadAnimation(this, R.anim.slide_left))
+        btn_galnet.startAnimation(AnimationUtils.loadAnimation(this, R.anim.slide_right))
+        btn_system.startAnimation(AnimationUtils.loadAnimation(this, R.anim.slide_left))
+        btn_ship.startAnimation(AnimationUtils.loadAnimation(this, R.anim.slide_right))
+        btn_commodity.startAnimation(AnimationUtils.loadAnimation(this, R.anim.slide_left))
+        btn_distance.startAnimation(AnimationUtils.loadAnimation(this, R.anim.slide_right))
+        btn_account.startAnimation(AnimationUtils.loadAnimation(this, R.anim.slide_left))
+        btn_option.startAnimation(AnimationUtils.loadAnimation(this, R.anim.slide_right))
+        btn_about.startAnimation(AnimationUtils.loadAnimation(this, R.anim.slide_bottom))
 
 
         //------------------------------------------------------------------------------------
         // OnClickListener
         //------------------------------------------------------------------------------------
+        buttonListener(btn_news, speedBounceAnim)
 
-        btn_system.setOnClickListener {
-            val intentSystem = Intent(this, SystemActivity::class.java)
-            speedBounceAnim.setAnimationListener(object : Animation.AnimationListener{
-                override fun onAnimationStart(p0: Animation?) {
+        buttonListener(btn_galnet, speedBounceAnim)
 
-                }
+        buttonListener(btn_system, speedBounceAnim, Intent(this, SystemActivity::class.java))
+
+        buttonListener(btn_ship, speedBounceAnim, Intent(this, ShipActivity::class.java))
+
+        buttonListener(btn_commodity, speedBounceAnim)
+
+        buttonListener(btn_distance, speedBounceAnim, Intent(this, DistanceActivity::class.java))
+
+        buttonListener(btn_account, speedBounceAnim)
+
+        buttonListener(btn_option, speedBounceAnim)
+
+        buttonListener(btn_about, speedBounceAnim)
+    }
+
+    fun buttonListener(button: Button, animation: Animation, intent: Intent) {
+        button.setOnClickListener {
+            animation.setAnimationListener(object : Animation.AnimationListener {
+                override fun onAnimationStart(p0: Animation?) {}
+
 
                 override fun onAnimationEnd(p0: Animation?) {
-                    startActivity(intentSystem)
+                    startActivity(intent)
                 }
 
-                override fun onAnimationRepeat(p0: Animation?) {
-
-                }
-
+                override fun onAnimationRepeat(p0: Animation?) {}
             })
-            btn_system.startAnimation(speedBounceAnim)
+            button.startAnimation(animation)
         }
+    }
 
-        btn_distance.setOnClickListener {
-            val intentSystem = Intent(this, DistanceActivity::class.java)
-            speedBounceAnim.setAnimationListener(object : Animation.AnimationListener{
-                override fun onAnimationStart(p0: Animation?) {
-                }
+    fun buttonListener(button: Button, animation: Animation) {
+        button.setOnClickListener {
+            animation.setAnimationListener(object : Animation.AnimationListener {
+                override fun onAnimationStart(p0: Animation?) {}
+
 
                 override fun onAnimationEnd(p0: Animation?) {
-                    startActivity(intentSystem)
                 }
 
-                override fun onAnimationRepeat(p0: Animation?) {
-                }
-
+                override fun onAnimationRepeat(p0: Animation?) {}
             })
-            btn_distance.startAnimation(speedBounceAnim)
-        }
-
-        btn_ship.setOnClickListener {
-            val intentSystem = Intent(this, ShipActivity::class.java)
-            startActivity(intentSystem)
+            button.startAnimation(animation)
         }
     }
 
