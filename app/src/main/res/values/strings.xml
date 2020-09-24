@@ -1,5 +1,12 @@
 <resources>
     <string name="app_name">Elite Tools</string>
+    <string name="app_name_system">Elite Tools - Système</string>
+    <string name="app_name_ship">Elite Tools - Vaisseaux</string>
+    <string name="app_name_commodity">Elite Tools - Commodités</string>
+    <string name="app_name_distance">Elite Tools - Calcul distance</string>
+    <string name="app_name_account">Elite Tools - Mon compte</string>
+    <string name="app_name_option">Elite Tools - Options</string>
+    <string name="app_name_about">Elite Tools - À propos</string>
 
     <!--****************XML Strings****************-->
     <string name="news">News</string>
