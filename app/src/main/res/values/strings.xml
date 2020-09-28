@@ -1,5 +1,12 @@
 <resources>
     <string name="app_name">Elite Tools</string>
+    <string name="app_name_system">Elite Tools - Système</string>
+    <string name="app_name_ship">Elite Tools - Vaisseaux</string>
+    <string name="app_name_commodity">Elite Tools - Commodités</string>
+    <string name="app_name_distance">Elite Tools - Calcul distance</string>
+    <string name="app_name_account">Elite Tools - Mon compte</string>
+    <string name="app_name_option">Elite Tools - Options</string>
+    <string name="app_name_about">Elite Tools - À propos</string>
 
     <!--****************XML Strings****************-->
     <string name="news">News</string>
@@ -39,7 +46,7 @@
     <string name="rvShip_stationName">Nom de la station:</string>
     <string name="rvShip_distanceSystem">Distance:</string>
     <string name="rvShip_distanceStar">Distance de l\'étoile:</string>
-    <string name="rvShip_landing">Taille max piste d\'atterissage:</string>
+    <string name="rvShip_landing">Piste d\'atterissage:</string>
 
 
 

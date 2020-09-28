@@ -2,6 +2,7 @@ package fr.weelders.elitetools
 
 import android.os.Bundle
 import android.view.WindowManager
+import android.view.animation.AnimationUtils
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -51,14 +52,14 @@ class ShipActivity : AppCompatActivity() {
         seekBar_ship.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(p0: SeekBar?, p1: Int, p2: Boolean) {
                 when (p0?.progress) {
-                    0 -> tv_ship_selectDistance.text = " 10 AL"
-                    1 -> tv_ship_selectDistance.text = " 20 AL"
-                    2 -> tv_ship_selectDistance.text = " 30 AL"
-                    3 -> tv_ship_selectDistance.text = " 40 AL"
-                    4 -> tv_ship_selectDistance.text = " 50 AL"
-                    5 -> tv_ship_selectDistance.text = " 60 AL"
-                    6 -> tv_ship_selectDistance.text = " 70 AL"
-                    7 -> tv_ship_selectDistance.text = " 80 AL"
+                    0 -> tv_ship_selectDistance.text = "10 AL"
+                    1 -> tv_ship_selectDistance.text = "20 AL"
+                    2 -> tv_ship_selectDistance.text = "30 AL"
+                    3 -> tv_ship_selectDistance.text = "40 AL"
+                    4 -> tv_ship_selectDistance.text = "50 AL"
+                    5 -> tv_ship_selectDistance.text = "60 AL"
+                    6 -> tv_ship_selectDistance.text = "70 AL"
+                    7 -> tv_ship_selectDistance.text = "80 AL"
                 }
             }
 
@@ -76,6 +77,7 @@ class ShipActivity : AppCompatActivity() {
         //------------------------------------------------------------------------------------
 
         btn_ship_search.setOnClickListener {
+            btn_ship_search.startAnimation(AnimationUtils.loadAnimation(this, R.anim.speed_bounce))
             var systemName = et_ship_name.text.toString()
             var shipName = spinner_ship.selectedItem.toString()
             var distance = seekBar_ship.progress
@@ -93,28 +95,19 @@ class ShipActivity : AppCompatActivity() {
 
             try {
                 systemName = userInputCheck(systemName, this)
-
                 thread {
                     try {
                         val listComplexeStations = getShips(systemName, distance, shipName)
-                        if (listComplexeStations::class == String::class)
-                        {
+                        if (listComplexeStations::class == String::class) {
                             println(listComplexeStations.toString())
                             runOnUiThread {
-                                Toast.makeText(
-                                    this,
-                                    listComplexeStations.toString(),
-                                    Toast.LENGTH_LONG
-                                ).show()
+                                Toast.makeText(this, listComplexeStations.toString(), Toast.LENGTH_SHORT).show()
                             }
-
-                        }else {
-                            runOnUiThread { rv_ship.adapter = RecyclerViewAdapterShip(
-                                listComplexeStations as List<ComplexeStations>,
-                                this
-                            ) }
+                        } else {
+                            runOnUiThread {
+                                rv_ship.adapter = RecyclerViewAdapterShip(listComplexeStations as List<ComplexeStations>, this)
+                            }
                         }
-
                     } catch (e: Exception) {
                         e.printStackTrace()
                         runOnUiThread {
@@ -122,15 +115,10 @@ class ShipActivity : AppCompatActivity() {
                         }
                     }
                 }
-
-
             } catch (e: UserInputException) {
                 e.printStackTrace()
                 Toast.makeText(this, e.message, Toast.LENGTH_SHORT).show()
             }
-
         }
-
-
     }
 }
