@@ -1,5 +1,12 @@
 <resources>
     <string name="app_name">Elite Tools</string>
+    <string name="app_name_system">Elite Tools - Système</string>
+    <string name="app_name_ship">Elite Tools - Vaisseaux</string>
+    <string name="app_name_commodity">Elite Tools - Commodités</string>
+    <string name="app_name_distance">Elite Tools - Calcul distance</string>
+    <string name="app_name_account">Elite Tools - Mon compte</string>
+    <string name="app_name_option">Elite Tools - Options</string>
+    <string name="app_name_about">Elite Tools - À propos</string>
 
     <!--****************XML Strings****************-->
     <string name="news">News</string>
@@ -17,6 +24,11 @@
     <string name="system_btnLocateMe">Me Localiser</string>
     <string name="system_EtName">Nom du système</string>
 
+    <string name="rvSystem_allegiance">Allégeance:</string>
+    <string name="rvSystem_economy">Économie:</string>
+    <string name="rvSystem_security">Sécurité:</string>
+    <string name="rvSystem_power">Puissance:</string>
+
     <string name="distance_content">Permet de rechercher la distance entre 2 systèmes par leurs noms.</string>
     <string name="distance_btnSearch">Rechercher</string>
     <string name="distance_btnLocateMe">Me Localiser</string>
@@ -24,12 +36,61 @@
     <string name="distance_EtName2">Nom du système 2</string>
     <string name="distance_tvDistance">Distance entre les 2 Systèmes:</string>
 
-    <string name="rvSystem_allegiance">Allégeance:</string>
-    <string name="rvSystem_economy">Économie:</string>
-    <string name="rvSystem_security">Sécurité:</string>
-    <string name="rvSystem_power">Puissance:</string>
+    <string name="ship_content">Permet de trouver l\'emplacement d\'un vaisseau dans les environs.</string>
+    <string name="ship_btnSearch">Rechercher</string>
+    <string name="ship_btnLocateMe">Me Localiser</string>
+    <string name="ship_EtName">Nom du système</string>
+    <string name="ship_tvSeek">Distance: </string>
+
+    <string name="rvShip_systemName">Nom du système:</string>
+    <string name="rvShip_stationName">Nom de la station:</string>
+    <string name="rvShip_distanceSystem">Distance:</string>
+    <string name="rvShip_distanceStar">Distance de l\'étoile:</string>
+    <string name="rvShip_landing">Piste d\'atterissage:</string>
+
 
 
     <!--****************Kotlin Strings****************-->
     <string name="userInputEx_default">Erreur, champ incorrect !</string>
+
+    <!--****************Spinner Strings****************-->
+    <string-array name="spinner_ship_array">
+        <item>Adder</item>
+        <item>Alliance Challenger</item>
+        <item>Alliance Crusader</item>
+        <item>Anaconda</item>
+        <item>ASP Explorer</item>
+        <item>ASP Scout</item>
+        <item>Beluga Liner</item>
+        <item>Cobra Mk. III</item>
+        <item>Cobra MK IV</item>
+        <item>Diamondback Explorer</item>
+        <item>Diamondback Scout</item>
+        <item>Dolphin</item>
+        <item>Eagle Mk. II</item>
+        <item>Federal Assault Ship</item>
+        <item>Federal Corvette</item>
+        <item>Federal Dropship</item>
+        <item>Federal Gunship</item>
+        <item>Fer-de-Lance</item>
+        <item>Hauler</item>
+        <item>Imperial Clipper</item>
+        <item>Imperial Courier</item>
+        <item>Imperial Cutter</item>
+        <item>Imperial Eagle</item>
+        <item>Keelback</item>
+        <item>Krait MkII</item>
+        <item>Krait Phantom</item>
+        <item>Mamba</item>
+        <item>Orca</item>
+        <item>Python</item>
+        <item>Sidewinder Mk. I</item>
+        <item>Type-10 Defender</item>
+        <item>Type-6 Transporter</item>
+        <item>Type-7 Transporter</item>
+        <item>Type-9 Heavy</item>
+        <item>Viper Mk III</item>
+        <item>Viper MK IV</item>
+        <item>Vulture</item>
+    </string-array>
 </resources>

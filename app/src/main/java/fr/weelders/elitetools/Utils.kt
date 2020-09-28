@@ -25,3 +25,16 @@ fun makeFistCharCapital(txt: String): String {
         return returnString
     }
 }
+
+class MyBounceInterpolator(val amplitude:Double, val frequency:Double): android.view.animation.Interpolator {
+    val mAmplitude = amplitude
+    val mFrequency = frequency
+
+
+    override fun getInterpolation(time: Float): Float {
+        return (-1 * Math.pow(
+            Math.E,
+            -time / mAmplitude
+        ) * Math.cos(mFrequency * time) + 1).toFloat()
+    }
+}

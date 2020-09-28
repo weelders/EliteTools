@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.rv_row_system.view.*
 
-class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+class ViewHolderSystem(view: View) : RecyclerView.ViewHolder(view) {
     val tv_rvSystem_name = view.tv_rvSystem_name
     val tv_rvSystem_allegiance = view.tv_rvSystem_allegiance
     val tv_rvSystem_power = view.tv_rvSystem_power
@@ -16,24 +16,24 @@ class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 }
 
 class RecyclerViewAdapterSystem(val systemList: ArrayList<Docs>, val context: Context) :
-    RecyclerView.Adapter<ViewHolder>() {
+    RecyclerView.Adapter<ViewHolderSystem>() {
 
     override fun getItemCount(): Int {
         return systemList.size
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return ViewHolder(
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderSystem {
+        return ViewHolderSystem(
             LayoutInflater.from(context).inflate(R.layout.rv_row_system, parent, false)
         )
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+    override fun onBindViewHolder(holderSystem: ViewHolderSystem, position: Int) {
         val system = systemList[position]
-        holder.tv_rvSystem_name.setText(makeFistCharCapital(system.name))
-        holder.tv_rvSystem_allegiance.setText(makeFistCharCapital(system.allegiance))
-        holder.tv_rvSystem_economy.setText(makeFistCharCapital(system.primary_economy))
-        holder.tv_rvSystem_power.setText(makeFistCharCapital(system.power))
-        holder.tv_rvSystem_security.setText(makeFistCharCapital(system.security))
+        holderSystem.tv_rvSystem_name.setText(makeFistCharCapital(system.name))
+        holderSystem.tv_rvSystem_allegiance.setText(makeFistCharCapital(system.allegiance))
+        holderSystem.tv_rvSystem_economy.setText(makeFistCharCapital(system.primary_economy))
+        holderSystem.tv_rvSystem_power.setText(makeFistCharCapital(system.power))
+        holderSystem.tv_rvSystem_security.setText(makeFistCharCapital(system.security))
     }
 }
