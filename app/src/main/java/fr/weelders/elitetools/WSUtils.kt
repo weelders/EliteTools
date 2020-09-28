@@ -2,10 +2,13 @@ package fr.weelders.elitetools
 
 import com.google.gson.Gson
 
-fun getSystem(nameSystem: String): ArrayList<Docs> {
-    val json = sendGetOkHttpRequest(URL_SYSTEM + nameSystem)
-    val result = Gson().fromJson(json, SystemResponse::class.java)
-    return result.docs
+fun getSystem(nameSystem: String): Any {
+    val json = sendGetOkHttpRequest("$URL_SYSTEM?name=$nameSystem")
+    try {
+        return Gson().fromJson(json, Array<ComplexeStations>::class.java).toList()
+    } catch (e: Exception) {
+        return json
+    }
 }
 
 fun getSystemName(): Array<String>? {
@@ -23,12 +26,11 @@ fun getDistanceByNames(name1: String, name2: String): Any {
     }
 }
 
-fun getShips(name:String,distance:Int,ship:String): Any {
+fun getShips(name: String, distance: Int, ship: String): Any {
     val json = sendGetOkHttpRequest("$URL_SHIPS?name=$name&distance=$distance&ship=$ship")
     try {
-        return Gson().fromJson(json,Array<ComplexeStations>::class.java).toList()
-    }catch (e:java.lang.Exception)
-    {
+        return Gson().fromJson(json, Array<ComplexeStations>::class.java).toList()
+    } catch (e: Exception) {
         return json
     }
 }

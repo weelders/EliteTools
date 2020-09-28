@@ -4,8 +4,9 @@ import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.RequestBody.Companion.toRequestBody
+import java.util.concurrent.TimeUnit
 
-val client = OkHttpClient()
+val client = OkHttpClient().newBuilder().readTimeout(15, TimeUnit.SECONDS).build()
 
 @Throws(Exception::class)
 fun sendGetOkHttpRequest(url: String): String {

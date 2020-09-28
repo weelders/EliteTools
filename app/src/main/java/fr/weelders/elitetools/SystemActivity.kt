@@ -2,6 +2,7 @@ package fr.weelders.elitetools
 
 import android.os.Bundle
 import android.view.WindowManager
+import android.view.animation.AnimationUtils
 import android.widget.Button
 import android.widget.MultiAutoCompleteTextView
 import android.widget.Toast
@@ -29,27 +30,42 @@ class SystemActivity : AppCompatActivity() {
 
         //Remove message "RecyclerView: No adapter attached; skipping layout" in logs
         rv_system.layoutManager = LinearLayoutManager(this)
-        rv_system.adapter = RecyclerViewAdapterSystem(ArrayList<Docs>(), this)
+        rv_system.adapter = RecyclerViewAdapterSystem(ArrayList<ComplexeStations>(), this)
 
         //------------------------------------------------------------------------------------
         // OnClickListener
         //------------------------------------------------------------------------------------
 
         btn_system_search.setOnClickListener {
+            btn_system_search.startAnimation(AnimationUtils.loadAnimation(this, R.anim.speed_bounce))
             var systemName = et_system_name.text.toString()
 
             try {
                 systemName = userInputCheck(systemName, this)
-                thread {
-                    try {
-                        val listSystem = getSystem(systemName)
-                        runOnUiThread {
-                            rv_system.adapter = RecyclerViewAdapterSystem(listSystem, this)
-                        }
-                    } catch (e: Exception) {
-                        e.printStackTrace()
-                        runOnUiThread {
-                            Toast.makeText(this, e.message, Toast.LENGTH_SHORT).show()
+                if (systemName.length < 3) {
+                    Toast.makeText(this, "Le nom est trop court", Toast.LENGTH_SHORT).show()
+                } else {
+                    thread {
+                        try {
+                            val listSystem = getSystem(systemName)
+                            if (listSystem::class == String::class) {
+                                runOnUiThread {
+                                    Toast.makeText(this, listSystem.toString(), Toast.LENGTH_SHORT).show()
+                                }
+                            } else if ((listSystem as List<ComplexeStations>).isEmpty()) {
+                                runOnUiThread {
+                                    Toast.makeText(this, "Le nom n'existe pas", Toast.LENGTH_SHORT).show()
+                                }
+                            } else {
+                                runOnUiThread {
+                                    rv_system.adapter = RecyclerViewAdapterSystem(listSystem as List<ComplexeStations>, this)
+                                }
+                            }
+                        } catch (e: Exception) {
+                            e.printStackTrace()
+                            runOnUiThread {
+                                Toast.makeText(this, e.message, Toast.LENGTH_SHORT).show()
+                            }
                         }
                     }
                 }
@@ -58,5 +74,6 @@ class SystemActivity : AppCompatActivity() {
                 Toast.makeText(this, e.message, Toast.LENGTH_SHORT).show()
             }
         }
+
     }
 }
