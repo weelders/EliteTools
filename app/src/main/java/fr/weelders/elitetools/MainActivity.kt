@@ -69,7 +69,7 @@ class MainActivity : AppCompatActivity() {
         buttonListener(btn_about, speedBounceAnim)
     }
 
-    fun buttonListener(button: Button, animation: Animation, intent: Intent) {
+    private fun buttonListener(button: Button, animation: Animation, intent: Intent) {
         button.setOnClickListener {
             animation.setAnimationListener(object : Animation.AnimationListener {
                 override fun onAnimationStart(p0: Animation?) {}
