@@ -9,7 +9,9 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import kotlin.concurrent.thread
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 class SystemActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -43,30 +45,10 @@ class SystemActivity : AppCompatActivity() {
             try {
                 systemName = userInputCheck(systemName, this)
                 if (systemName.length < 3) {
-                    Toast.makeText(this, "Le nom est trop court", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, this.getString(R.string.error_name_tooSmall), Toast.LENGTH_SHORT).show()
                 } else {
-                    thread {
-                        try {
-                            val listSystem = getSystem(systemName)
-                            if (listSystem::class == String::class) {
-                                runOnUiThread {
-                                    Toast.makeText(this, listSystem.toString(), Toast.LENGTH_SHORT).show()
-                                }
-                            } else if ((listSystem as List<ComplexeStations>).isEmpty()) {
-                                runOnUiThread {
-                                    Toast.makeText(this, "Le nom n'existe pas", Toast.LENGTH_SHORT).show()
-                                }
-                            } else {
-                                runOnUiThread {
-                                    rv_system.adapter = RecyclerViewAdapterSystem(listSystem as List<ComplexeStations>, this)
-                                }
-                            }
-                        } catch (e: Exception) {
-                            e.printStackTrace()
-                            runOnUiThread {
-                                Toast.makeText(this, e.message, Toast.LENGTH_SHORT).show()
-                            }
-                        }
+                    GlobalScope.launch(Dispatchers.IO) {
+                        printSystem(rv_system, systemName)
                     }
                 }
             } catch (e: UserInputException) {
@@ -75,5 +57,29 @@ class SystemActivity : AppCompatActivity() {
             }
         }
 
+    }
+
+    private fun printSystem(rv_system: RecyclerView, systemName: String) {
+        try {
+            val listSystem = getSystem(systemName)
+            if (listSystem::class == String::class) {
+                runOnUiThread {
+                    Toast.makeText(this, listSystem.toString(), Toast.LENGTH_SHORT).show()
+                }
+            } else if ((listSystem as List<ComplexeStations>).isEmpty()) {
+                runOnUiThread {
+                    Toast.makeText(this, this.getString(R.string.error_name_doestExist), Toast.LENGTH_SHORT).show()
+                }
+            } else {
+                runOnUiThread {
+                    rv_system.adapter = RecyclerViewAdapterSystem(listSystem, this)
+                }
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+            runOnUiThread {
+                Toast.makeText(this, e.message, Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 }
