@@ -15,7 +15,7 @@ class ViewHolderSystem(view: View) : RecyclerView.ViewHolder(view) {
     val tv_rvSystem_security = view.tv_rvSystem_security
 }
 
-class RecyclerViewAdapterSystem(val systemList: ArrayList<Docs>, val context: Context) :
+class RecyclerViewAdapterSystem(val systemList: List<ComplexeStations>, val context: Context) :
     RecyclerView.Adapter<ViewHolderSystem>() {
 
     override fun getItemCount(): Int {
@@ -30,10 +30,10 @@ class RecyclerViewAdapterSystem(val systemList: ArrayList<Docs>, val context: Co
 
     override fun onBindViewHolder(holderSystem: ViewHolderSystem, position: Int) {
         val system = systemList[position]
-        holderSystem.tv_rvSystem_name.setText(makeFistCharCapital(system.name))
-        holderSystem.tv_rvSystem_allegiance.setText(makeFistCharCapital(system.allegiance))
-        holderSystem.tv_rvSystem_economy.setText(makeFistCharCapital(system.primary_economy))
-        holderSystem.tv_rvSystem_power.setText(makeFistCharCapital(system.power))
-        holderSystem.tv_rvSystem_security.setText(makeFistCharCapital(system.security))
+        holderSystem.tv_rvSystem_name.setText(makeFistCharCapital(system.systemPops.systemPops.name))
+        holderSystem.tv_rvSystem_allegiance.setText(makeFistCharCapital(system.systemPops.systemPops.allegiance ?: "N/A"))
+        holderSystem.tv_rvSystem_economy.setText(makeFistCharCapital(system.systemPops.systemPops.primary_economy ?: "N/A"))
+        holderSystem.tv_rvSystem_power.setText(makeFistCharCapital(system.systemPops.systemPops.power ?: "N/A"))
+        holderSystem.tv_rvSystem_security.setText(makeFistCharCapital(system.systemPops.systemPops.security ?: "N/A"))
     }
 }
