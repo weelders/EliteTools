@@ -49,7 +49,6 @@
     <string name="rvShip_landing">Piste d\'atterissage:</string>
 
 
-
     <!--****************Kotlin Strings****************-->
     <string name="userInputEx_default">Erreur, champ incorrect !</string>
     <string name="error_name_doestExist">Erreur, Le nom n\'existe pas !</string>

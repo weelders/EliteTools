@@ -52,7 +52,7 @@ class MainActivity : AppCompatActivity() {
         //------------------------------------------------------------------------------------
         buttonListener(btn_news, speedBounceAnim)
 
-        buttonListener(btn_galnet, speedBounceAnim)
+        buttonListener(btn_galnet, speedBounceAnim,Intent(this,GalnetActivity::class.java))
 
         buttonListener(btn_system, speedBounceAnim, Intent(this, SystemActivity::class.java))
 
