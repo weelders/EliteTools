@@ -16,7 +16,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:targetApi="n">
-        <activity android:name=".GalnetActivity"></activity>
+        <activity android:name=".AboutActivity"></activity>
+        <activity android:name=".GalnetActivity" />
         <activity
             android:name=".ShipActivity"
             android:label="@string/app_name_ship" />
