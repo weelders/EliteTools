@@ -34,3 +34,8 @@ fun getShips(name: String, distance: Int, ship: String): Any {
         return json
     }
 }
+
+fun getGalnetNews(): GalnetNews? {
+    val json = sendGetOkHttpRequest(URL_GALNET)
+    return Gson().fromJson(json,GalnetNews::class.java)
+}
