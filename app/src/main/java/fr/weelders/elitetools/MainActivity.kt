@@ -66,7 +66,7 @@ class MainActivity : AppCompatActivity() {
 
         buttonListener(btn_option, speedBounceAnim)
 
-        buttonListener(btn_about, speedBounceAnim)
+        buttonListener(btn_about, speedBounceAnim,Intent(this,AboutActivity::class.java))
     }
 
     private fun buttonListener(button: Button, animation: Animation, intent: Intent) {
