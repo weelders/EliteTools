@@ -16,10 +16,10 @@ class ViewHolderShip(view: View):RecyclerView.ViewHolder(view)
     val tv_rvShip_landing = view.findViewById<TextView>(R.id.tv_rvShip_landing)
 }
 
-class RecyclerViewAdapterShip(val listComplexeStations: List<ComplexeStations>, val context: Context): RecyclerView.Adapter<ViewHolderShip>()
+class RecyclerViewAdapterShip(val listShipDistance: List<ShipSystemDistance>, val context: Context): RecyclerView.Adapter<ViewHolderShip>()
 {
     override fun getItemCount(): Int {
-        return listComplexeStations.size
+        return listShipDistance.size
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderShip {
@@ -30,11 +30,11 @@ class RecyclerViewAdapterShip(val listComplexeStations: List<ComplexeStations>, 
 
     //TODO WARNING Problem with data provided by api
     override fun onBindViewHolder(holder: ViewHolderShip, position: Int) {
-        val complexeStations = listComplexeStations[position]
-        holder.tv_rvShip_systemName.text = makeFistCharCapital(complexeStations.systemPops.systemPops.name)
-        holder.tv_rvShip_stationName.text = makeFistCharCapital(complexeStations.stations[0].name)
-        holder.tv_rvShip_distance.text ="${complexeStations.systemPops.distance} AL"
-        holder.tv_rvShip_starDistance.text = "${complexeStations.stations[0].distance_to_star} LS"
-        holder.tv_rvShip_landing.text = complexeStations.stations[0].max_landing_pad_size
+        val systemDistance = listShipDistance[position]
+        holder.tv_rvShip_systemName.text = makeFistCharCapital(systemDistance.shipSystem.name_system)
+        holder.tv_rvShip_stationName.text = makeFistCharCapital(systemDistance.shipSystem.name_station)
+        holder.tv_rvShip_distance.text ="${systemDistance.distance} AL"
+        holder.tv_rvShip_starDistance.text = "${systemDistance.shipSystem.distance_to_star} LS"
+        holder.tv_rvShip_landing.text = systemDistance.shipSystem.max_landing_pad_size
     }
 }

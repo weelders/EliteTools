@@ -29,7 +29,7 @@ fun getDistanceByNames(name1: String, name2: String): Any {
 fun getShips(name: String, distance: Int, ship: String): Any {
     val json = sendGetOkHttpRequest("$URL_SHIPS?name=$name&distance=$distance&ship=$ship")
     try {
-        return Gson().fromJson(json, Array<ComplexeStations>::class.java).toList()
+        return Gson().fromJson(json, Array<ShipSystemDistance>::class.java).toList()
     } catch (e: Exception) {
         return json
     }

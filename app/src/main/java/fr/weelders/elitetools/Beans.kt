@@ -123,3 +123,18 @@ data class Feed (
     val link : String,
     val description : String,
 )
+
+data class ShipSystem(
+    val name_system: String,
+    val name_station: String,
+    val x: Double,
+    val y: Double,
+    val z: Double,
+    val distance_to_star: Int,
+    val max_landing_pad_size: String
+)
+
+data class ShipSystemDistance(
+    val shipSystem: ShipSystem,
+    val distance: Double
+)

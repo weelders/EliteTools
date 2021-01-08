@@ -43,7 +43,7 @@ class ShipActivity : AppCompatActivity() {
 
         //Remove message "RecyclerView: No adapter attached; skipping layout" in logs
         rv_ship.layoutManager = LinearLayoutManager(this)
-        rv_ship.adapter = RecyclerViewAdapterShip(ArrayList<ComplexeStations>(), this)
+        rv_ship.adapter = RecyclerViewAdapterShip(ArrayList(), this)
 
         //------------------------------------------------------------------------------------
         // SEEKBAR LISTENER
@@ -97,15 +97,15 @@ class ShipActivity : AppCompatActivity() {
                 systemName = userInputCheck(systemName, this)
                 thread {
                     try {
-                        val listComplexeStations = getShips(systemName, distance, shipName)
-                        if (listComplexeStations::class == String::class) {
-                            println(listComplexeStations.toString())
+                        val listShipStation = getShips(systemName, distance, shipName)
+                        if (listShipStation::class == String::class) {
+                            println(listShipStation.toString())
                             runOnUiThread {
-                                Toast.makeText(this, listComplexeStations.toString(), Toast.LENGTH_SHORT).show()
+                                Toast.makeText(this, listShipStation.toString(), Toast.LENGTH_SHORT).show()
                             }
                         } else {
                             runOnUiThread {
-                                rv_ship.adapter = RecyclerViewAdapterShip(listComplexeStations as List<ComplexeStations>, this)
+                                rv_ship.adapter = RecyclerViewAdapterShip(listShipStation as List<ShipSystemDistance>, this)
                             }
                         }
                     } catch (e: Exception) {

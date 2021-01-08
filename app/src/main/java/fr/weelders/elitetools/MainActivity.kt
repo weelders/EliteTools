@@ -51,22 +51,14 @@ class MainActivity : AppCompatActivity() {
         // OnClickListener
         //------------------------------------------------------------------------------------
         buttonListener(btn_news, speedBounceAnim)
-
-        buttonListener(btn_galnet, speedBounceAnim,Intent(this,GalnetActivity::class.java))
-
+        buttonListener(btn_galnet, speedBounceAnim, Intent(this, GalnetActivity::class.java))
         buttonListener(btn_system, speedBounceAnim, Intent(this, SystemActivity::class.java))
-
         buttonListener(btn_ship, speedBounceAnim, Intent(this, ShipActivity::class.java))
-
         buttonListener(btn_commodity, speedBounceAnim)
-
         buttonListener(btn_distance, speedBounceAnim, Intent(this, DistanceActivity::class.java))
-
         buttonListener(btn_account, speedBounceAnim)
-
         buttonListener(btn_option, speedBounceAnim)
-
-        buttonListener(btn_about, speedBounceAnim,Intent(this,AboutActivity::class.java))
+        buttonListener(btn_about, speedBounceAnim, Intent(this, AboutActivity::class.java))
     }
 
     private fun buttonListener(button: Button, animation: Animation, intent: Intent) {
