@@ -7,6 +7,8 @@ import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import java.net.ConnectException
+import java.net.SocketTimeoutException
 import kotlin.concurrent.thread
 
 class ShipActivity : AppCompatActivity() {
@@ -108,7 +110,17 @@ class ShipActivity : AppCompatActivity() {
                                 rv_ship.adapter = RecyclerViewAdapterShip(listShipStation as List<ShipSystemDistance>, this)
                             }
                         }
-                    } catch (e: Exception) {
+                    } catch (e: SocketTimeoutException) { //Timeout catch
+                        e.printStackTrace()
+                        runOnUiThread {
+                            Toast.makeText(this, getString(R.string.server_no_response), Toast.LENGTH_SHORT).show()
+                        }
+                    } catch (e: ConnectException) { //Connection fail catch
+                        e.printStackTrace()
+                        runOnUiThread {
+                            Toast.makeText(this, getString(R.string.error_connection), Toast.LENGTH_SHORT).show()
+                        }
+                    } catch (e: Exception) { //Generic catch
                         e.printStackTrace()
                         runOnUiThread {
                             Toast.makeText(this, e.message, Toast.LENGTH_SHORT).show()

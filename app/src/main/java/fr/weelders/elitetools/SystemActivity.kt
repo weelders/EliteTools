@@ -12,6 +12,8 @@ import androidx.recyclerview.widget.RecyclerView
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import java.net.ConnectException
+import java.net.SocketTimeoutException
 
 class SystemActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -75,7 +77,17 @@ class SystemActivity : AppCompatActivity() {
                     rv_system.adapter = RecyclerViewAdapterSystem(listSystem, this)
                 }
             }
-        } catch (e: Exception) {
+        } catch (e: SocketTimeoutException) { //Timeout catch
+            e.printStackTrace()
+            runOnUiThread {
+                Toast.makeText(this, getString(R.string.server_no_response), Toast.LENGTH_SHORT).show()
+            }
+        } catch (e: ConnectException) { //Connection fail catch
+            e.printStackTrace()
+            runOnUiThread {
+                Toast.makeText(this, getString(R.string.error_connection), Toast.LENGTH_SHORT).show()
+            }
+        } catch (e: Exception) { //Generic catch
             e.printStackTrace()
             runOnUiThread {
                 Toast.makeText(this, e.message, Toast.LENGTH_SHORT).show()

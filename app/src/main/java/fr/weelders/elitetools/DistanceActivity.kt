@@ -7,6 +7,8 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import java.net.ConnectException
+import java.net.SocketTimeoutException
 import kotlin.concurrent.thread
 
 class DistanceActivity : AppCompatActivity() {
@@ -56,9 +58,21 @@ class DistanceActivity : AppCompatActivity() {
                             }
                         }
 
-                    } catch (e: Exception) {
+                    } catch (e: SocketTimeoutException) { //Timeout catch
                         e.printStackTrace()
-                        runOnUiThread { Toast.makeText(this, e.message, Toast.LENGTH_SHORT).show() }
+                        runOnUiThread {
+                            Toast.makeText(this, getString(R.string.server_no_response), Toast.LENGTH_SHORT).show()
+                        }
+                    } catch (e: ConnectException) { //Connection fail catch
+                        e.printStackTrace()
+                        runOnUiThread {
+                            Toast.makeText(this, getString(R.string.error_connection), Toast.LENGTH_SHORT).show()
+                        }
+                    } catch (e: Exception) { //Generic catch
+                        e.printStackTrace()
+                        runOnUiThread {
+                            Toast.makeText(this, e.message, Toast.LENGTH_SHORT).show()
+                        }
                     }
                 }
             } catch (e: UserInputException) {

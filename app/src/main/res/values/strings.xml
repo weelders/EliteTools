@@ -56,9 +56,12 @@
 
 
     <!--****************Kotlin Strings****************-->
+    <string name="error_generic">Un problème est survenu, veuillez réessayer !</string>
     <string name="userInputEx_default">Erreur, champ incorrect !</string>
     <string name="error_name_doestExist">Erreur, Le nom n\'existe pas !</string>
     <string name="error_name_tooSmall">Erreur, Le nom est trop court !</string>
+    <string name="server_no_response">Le serveur ne répond pas, veuillez réessayer</string>
+    <string name="error_connection">Erreur avec la connection, veuillez vérifier vos paramètres réseau</string>
 
     <!--****************Spinner Strings****************-->
     <string-array name="spinner_ship_array">

@@ -9,6 +9,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import java.lang.Exception
+import java.net.ConnectException
+import java.net.SocketTimeoutException
 
 class GalnetActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -21,6 +23,7 @@ class GalnetActivity : AppCompatActivity() {
         val rv_galnet = findViewById<RecyclerView>(R.id.rv_galnet)
         rv_galnet.layoutManager = LinearLayoutManager(this)
 
+        //Todo crash en cas d'absence de connection
         try {
             GlobalScope.launch(Dispatchers.IO) {
                 val news = getGalnetNews()
@@ -33,14 +36,26 @@ class GalnetActivity : AppCompatActivity() {
                 else
                 {
                     runOnUiThread {
-                        Toast.makeText(applicationContext, "Un problème est survenu", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(applicationContext, getString(R.string.error_generic), Toast.LENGTH_SHORT).show()
                     }
                 }
 
             }
-        }catch (e:Exception)
-        {
-            Toast.makeText(this, e.message, Toast.LENGTH_SHORT).show()
+        } catch (e: SocketTimeoutException) { //Timeout catch
+            e.printStackTrace()
+            runOnUiThread {
+                Toast.makeText(this, getString(R.string.server_no_response), Toast.LENGTH_SHORT).show()
+            }
+        } catch (e: ConnectException) { //Connection fail catch
+            e.printStackTrace()
+            runOnUiThread {
+                Toast.makeText(this, getString(R.string.error_connection), Toast.LENGTH_SHORT).show()
+            }
+        } catch (e: Exception) { //Generic catch
+            e.printStackTrace()
+            runOnUiThread {
+                Toast.makeText(this, e.message, Toast.LENGTH_SHORT).show()
+            }
         }
 
     }
