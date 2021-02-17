@@ -7,12 +7,10 @@ import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import java.lang.Exception
 import java.net.ConnectException
 import java.net.SocketTimeoutException
+import kotlin.Exception
+import kotlin.concurrent.thread
 
 class GalnetActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,24 +26,28 @@ class GalnetActivity : AppCompatActivity() {
 
         try {
             pb_galnet.visibility = View.VISIBLE
-            GlobalScope.launch(Dispatchers.IO) {
-                val news = getGalnetNews()
-                if (news != null)
-                {
+            thread {
+                try {
+                    val news = getGalnetNews()
+                    if (news != null) {
+                        runOnUiThread {
+                            rv_galnet.adapter = RecyclerViewAdapterGalnet(news, this@GalnetActivity)
+                        }
+                    } else {
+                        runOnUiThread {
+                            Toast.makeText(applicationContext, getString(R.string.error_generic), Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                }catch (e:Exception){
+                    e.printStackTrace()
                     runOnUiThread {
-                        rv_galnet.adapter = RecyclerViewAdapterGalnet(news,this@GalnetActivity)
+                        Toast.makeText(this, getString(R.string.error_generic), Toast.LENGTH_SHORT).show()
+                    }
+                }finally {
+                    runOnUiThread {
+                        pb_galnet.visibility = View.GONE
                     }
                 }
-                else
-                {
-                    runOnUiThread {
-                        Toast.makeText(applicationContext, getString(R.string.error_generic), Toast.LENGTH_SHORT).show()
-                    }
-                }
-                runOnUiThread {
-                    pb_galnet.visibility = View.GONE
-                }
-
             }
         } catch (e: SocketTimeoutException) { //Timeout catch
             e.printStackTrace()
