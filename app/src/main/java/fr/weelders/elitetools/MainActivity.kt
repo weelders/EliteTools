@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.Button
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity() {
@@ -84,6 +85,7 @@ class MainActivity : AppCompatActivity() {
 
 
                 override fun onAnimationEnd(p0: Animation?) {
+                    Toast.makeText(this@MainActivity, "Work in progress", Toast.LENGTH_SHORT).show()
                 }
 
                 override fun onAnimationRepeat(p0: Animation?) {}

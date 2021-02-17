@@ -1,11 +1,9 @@
 package fr.weelders.elitetools
 
 import android.os.Bundle
+import android.view.View
 import android.view.WindowManager
-import android.widget.Button
-import android.widget.EditText
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import java.net.ConnectException
 import java.net.SocketTimeoutException
@@ -28,6 +26,7 @@ class DistanceActivity : AppCompatActivity() {
         val btn_distance_search = findViewById<Button>(R.id.btn_distance_search)
         val btn_distance_locate = findViewById<Button>(R.id.btn_distance_locate)
         val tv_distance_result = findViewById<TextView>(R.id.tv_distance_result)
+        val pb_distance = findViewById<ProgressBar>(R.id.pb_distance)
 
         //Reset TextView
         tv_distance_result.text = ""
@@ -40,6 +39,7 @@ class DistanceActivity : AppCompatActivity() {
             var systemName1 = et_distance_name1.text.toString()
             var systemName2 = et_distance_name2.text.toString()
             try {
+                pb_distance.visibility = View.VISIBLE
                 systemName1 = userInputCheck(systemName1, this)
                 systemName2 = userInputCheck(systemName2, this)
                 thread {
@@ -57,7 +57,6 @@ class DistanceActivity : AppCompatActivity() {
                                 ).show()
                             }
                         }
-
                     } catch (e: SocketTimeoutException) { //Timeout catch
                         e.printStackTrace()
                         runOnUiThread {
@@ -73,12 +72,20 @@ class DistanceActivity : AppCompatActivity() {
                         runOnUiThread {
                             Toast.makeText(this, e.message, Toast.LENGTH_SHORT).show()
                         }
+                    } finally {
+                        runOnUiThread {
+                            pb_distance.visibility = View.INVISIBLE
+                        }
                     }
                 }
             } catch (e: UserInputException) {
                 e.printStackTrace()
                 Toast.makeText(this, e.message, Toast.LENGTH_SHORT).show()
             }
+        }
+
+        btn_distance_locate.setOnClickListener {
+            Toast.makeText(this, "Work in progress", Toast.LENGTH_SHORT).show()
         }
     }
 }

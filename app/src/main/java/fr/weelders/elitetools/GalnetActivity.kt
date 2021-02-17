@@ -2,6 +2,8 @@ package fr.weelders.elitetools
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -21,9 +23,11 @@ class GalnetActivity : AppCompatActivity() {
         // Import Views
         //------------------------------------------------------------------------------------
         val rv_galnet = findViewById<RecyclerView>(R.id.rv_galnet)
+        val pb_galnet = findViewById<ProgressBar>(R.id.pb_galnet)
         rv_galnet.layoutManager = LinearLayoutManager(this)
 
         try {
+            pb_galnet.visibility = View.VISIBLE
             GlobalScope.launch(Dispatchers.IO) {
                 val news = getGalnetNews()
                 if (news != null)
@@ -37,6 +41,9 @@ class GalnetActivity : AppCompatActivity() {
                     runOnUiThread {
                         Toast.makeText(applicationContext, getString(R.string.error_generic), Toast.LENGTH_SHORT).show()
                     }
+                }
+                runOnUiThread {
+                    pb_galnet.visibility = View.GONE
                 }
 
             }

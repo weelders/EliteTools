@@ -1,6 +1,8 @@
 package fr.weelders.elitetools
 
+import android.opengl.Visibility
 import android.os.Bundle
+import android.view.View
 import android.view.WindowManager
 import android.view.animation.AnimationUtils
 import android.widget.*
@@ -30,6 +32,7 @@ class ShipActivity : AppCompatActivity() {
         val btn_ship_search = findViewById<Button>(R.id.btn_ship_search)
         val btn_ship_locate = findViewById<Button>(R.id.btn_ship_locate)
         val rv_ship = findViewById<RecyclerView>(R.id.rv_ship)
+        val pb_ship = findViewById<ProgressBar>(R.id.pb_ship)
 
         //------------------------------------------------------------------------------------
         // SETUP VIEWS
@@ -81,7 +84,7 @@ class ShipActivity : AppCompatActivity() {
         btn_ship_search.setOnClickListener {
             btn_ship_search.startAnimation(AnimationUtils.loadAnimation(this, R.anim.speed_bounce))
             var systemName = et_ship_name.text.toString()
-            var shipName = spinner_ship.selectedItem.toString()
+            val shipName = spinner_ship.selectedItem.toString()
             var distance = seekBar_ship.progress
 
             when (distance) {
@@ -96,6 +99,8 @@ class ShipActivity : AppCompatActivity() {
             }
 
             try {
+                btn_ship_search.isEnabled = false
+                pb_ship.visibility = View.VISIBLE
                 systemName = userInputCheck(systemName, this)
                 thread {
                     try {
@@ -125,12 +130,21 @@ class ShipActivity : AppCompatActivity() {
                         runOnUiThread {
                             Toast.makeText(this, getString(R.string.error_generic), Toast.LENGTH_SHORT).show()
                         }
+                    } finally {
+                        runOnUiThread {
+                            btn_ship_search.isEnabled = true
+                            pb_ship.visibility = View.INVISIBLE
+                        }
                     }
                 }
             } catch (e: UserInputException) {
                 e.printStackTrace()
                 Toast.makeText(this, e.message, Toast.LENGTH_SHORT).show()
             }
+        }
+
+        btn_ship_locate.setOnClickListener {
+            Toast.makeText(this, "Work in progress", Toast.LENGTH_SHORT).show()
         }
     }
 }
