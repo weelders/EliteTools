@@ -23,7 +23,6 @@ class GalnetActivity : AppCompatActivity() {
         val rv_galnet = findViewById<RecyclerView>(R.id.rv_galnet)
         rv_galnet.layoutManager = LinearLayoutManager(this)
 
-        //Todo crash en cas d'absence de connection
         try {
             GlobalScope.launch(Dispatchers.IO) {
                 val news = getGalnetNews()

@@ -28,7 +28,6 @@ class RecyclerViewAdapterShip(val listShipDistance: List<ShipSystemDistance>, va
         )
     }
 
-    //TODO WARNING Problem with data provided by api
     override fun onBindViewHolder(holder: ViewHolderShip, position: Int) {
         val systemDistance = listShipDistance[position]
         holder.tv_rvShip_systemName.text = makeFistCharCapital(systemDistance.shipSystem.name_system)

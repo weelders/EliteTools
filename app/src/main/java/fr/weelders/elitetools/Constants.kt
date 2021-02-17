@@ -1,6 +1,6 @@
 package fr.weelders.elitetools
 
-const val URL_BASE = "http://90.76.227.136:8888"
+const val URL_BASE = "http://109.220.212.226:8888"
 const val URL_SYSTEM = "$URL_BASE/getSystem"
 const val URL_SYSTEM_NAMES = "$URL_BASE/getSystemsNames"
 const val URL_DISTANCE = "$URL_BASE/getDistance"

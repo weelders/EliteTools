@@ -123,7 +123,7 @@ class ShipActivity : AppCompatActivity() {
                     } catch (e: Exception) { //Generic catch
                         e.printStackTrace()
                         runOnUiThread {
-                            Toast.makeText(this, e.message, Toast.LENGTH_SHORT).show()
+                            Toast.makeText(this, getString(R.string.error_generic), Toast.LENGTH_SHORT).show()
                         }
                     }
                 }
